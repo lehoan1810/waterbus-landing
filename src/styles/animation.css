@@ -1,0 +1,9 @@
+.animate_pulse_slow {
+  animation: pulse 3s ease-in-out infinite
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
