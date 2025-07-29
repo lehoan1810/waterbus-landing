@@ -46,7 +46,7 @@ const BentoCard = ({
 		key={name}
 		className={cn(
 			"group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
-			" group relative flex flex-col justify-between overflow-hidden rounded-xl transform-gpu bg-[#1a1a1a] [border:1px_solid_rgba(255,255,255,.1)] [box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-2",
+			" group relative flex flex-col justify-between overflow-hidden rounded-xl  col-span-3 lg:col-span-2 border border-neutral-800 hover:border-neutral-600 duration-300 bg-neutral-900",
 			className
 		)}
 		{...props}
@@ -70,7 +70,7 @@ const BentoCard = ({
 				</a>
 			</button>
 		</div>
-		<div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 bg-neutral-800/10" />
+		<div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 bg-alternative" />
 	</div>
 );
 

@@ -6,8 +6,8 @@ interface ISectionPricingProps {
 
 const SectionPricing = (_props: ISectionPricingProps) => {
 	return (
-		<div className="grid gap-4 md:grid-cols-2 md:gap-4">
-			<div className="flex flex-col items-center space-y-4 border py-4 rounded-2xl min-h-72">
+		<div className="grid gap-4 mt-20 md:grid-cols-2 md:gap-4">
+			<div className="flex flex-col items-center space-y-4 border py-4  min-h-72">
 				<h4 className="text-2xl font-bold py-4">Free</h4>
 				<ul className="space-y-2 text-sm text-muted-foreground ">
 					<li>
@@ -104,7 +104,7 @@ const SectionPricing = (_props: ISectionPricingProps) => {
 					Get started
 				</a>
 			</div>
-			<div className="flex flex-col items-center space-y-4 border py-4 rounded-2xl  min-h-72 border-pink-400">
+			<div className="flex flex-col items-center space-y-4 border py-4   min-h-72 border-pink-400">
 				<h4 className="text-2xl font-bold py-4">Pay what you want</h4>
 				<ul className="space-y-2 text-sm text-muted-foreground">
 					<li>

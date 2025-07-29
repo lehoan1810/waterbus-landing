@@ -18,7 +18,7 @@ const BannerHome = (_props: IBannerLynxProps) => {
 	};
 	return (
 		<div className="relative h-[30rem] md:h-[40rem] text_custom_selection">
-			<MeteorsBackground gridSize={120} meteorCount={3} />
+			{/* <MeteorsBackground gridSize={120} meteorCount={3} /> */}
 			<div className="mx-auto w-full max-w-5xl px-6 h-full py-16 md:py-24 lg:px-16 lg:py-24 xl:px-20 pt-8 pb-10 md:pt-16 ">
 				<AnimationContainer className="flex items-center justify-center flex-col lg:gap-8 gap-4">
 					<button
@@ -36,7 +36,7 @@ const BannerHome = (_props: IBannerLynxProps) => {
 							<ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
 						</span>
 					</button>
-					<h1 className=" relative mx-0  pt-5 md:mx-auto md:px-0 px-4 md:py-2 text-balance text-center text-5xl sm:text-7xl md:text-7xl lg:text-8xl">
+					<h1 className=" relative mx-0  pt-5 md:mx-auto md:px-0 px-4 md:py-2 text-balance text-center text-4xl sm:text-5xl sm:leading-none lg:text-7xl">
 						<p className="text-center">Go live instantly</p>
 						<p className="text-primary text-center">Scale without limits</p>
 					</h1>

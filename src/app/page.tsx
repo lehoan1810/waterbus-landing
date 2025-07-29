@@ -20,25 +20,37 @@ export default function Home() {
 	const listVideo = [
 		{
 			id: 1,
-			name: "Video 1",
+			name: "Video Conferencing",
 			url: "https://media.waterbus.tech/waterbus-demo.mp4",
 		},
 		{
 			id: 2,
-			name: "Video 2",
-			url: "https://xguihxuzqibwxjnimxev.supabase.co/storage/v1/object/public/videos/marketing/website/supabase-table-editor.webm",
+			name: "Live Streaming",
+			url: "https://media.waterbus.tech/waterbus-demo.mp4",
 		},
 		{
 			id: 3,
-			name: "Video 3",
+			name: "Virtual Background",
+			url: "https://media.waterbus.tech/waterbus-demo.mp4",
+		},
+		{
+			id: 4,
+			name: "Beauty Filters",
 			url: "https://media.waterbus.tech/waterbus-demo.mp4",
 		},
 	];
 	return (
 		<main>
 			<BannerHome />
+			<div className="container mx-auto px-4 md:px-12 lg:px-16 xl:px-20  py-10  overflow-hidden">
+				<BentoDemo />
+			</div>
+			<div className="pt-40 flex flex-col gap-y-16 md:gap-y-24 items-center justify-center relative">
+				<SectionMain />
+			</div>
+
 			<div className="container mx-auto px-6  lg:px-16 xl:px-28 py-10  overflow-hidden z-[99999]">
-				<div className="flex items-center flex-wrap gap-5 md:gap-8 justify-center pt-5 pb-8 md:py-11 translate-y-[10px] rounded-t-2xl border-t border-x w-full max-w-6xl bg-transparent mx-auto ">
+				<div className="flex items-center flex-wrap gap-5 md:gap-8 justify-center pt-5 pb-8 md:py-11  w-full max-w-6xl bg-transparent mx-auto ">
 					{listVideo.map((item, index) => (
 						<p
 							key={index}
@@ -53,18 +65,16 @@ export default function Home() {
 				</div>
 				<VideoHome videoUrl={videoUrl.url} />
 			</div>
-			<div className="pt-40 flex flex-col gap-y-16 md:gap-y-24 items-center justify-center relative">
-				<SectionMain />
-			</div>
-			<div className="container mx-auto px-4 md:px-12 lg:px-16 xl:px-20  py-10  overflow-hidden">
-				<BentoDemo />
-			</div>
 			<div
 				id="pricing"
 				className="max-w-3xl  pb-12 mx-auto space-y-6 mt-10 px-4  md:px-6"
 			>
-				<p className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-					<span className="text-primary text_custom_selection">Pricing</span>
+				<p className="mt-4 bg-gradient-to-br from-slate-300 to-slate-500  bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent ">
+					Fully open source, built for developers
+				</p>
+				<p className="text-center mx-auto	max-w-[300px] md:max-w-none text-sm sm:text-base lg:text-lg">
+					Sponsor the project to support infrastructure costs and continued
+					development.
 				</p>
 				<SectionPricing />
 			</div>

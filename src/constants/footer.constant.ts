@@ -1,6 +1,7 @@
 export const FOOTER_NAV = [
 	{
 		title: "Product",
+		className: "",
 		children: [
 			{
 				label: "Media server",
@@ -14,6 +15,7 @@ export const FOOTER_NAV = [
 	},
 	{
 		title: "Developers",
+		className: "row-span-3 md:row-span-none",
 		children: [
 			{
 				label: "Blog",
@@ -39,6 +41,7 @@ export const FOOTER_NAV = [
 	},
 	{
 		title: "Resources",
+		className: "",
 		children: [
 			{
 				label: "Virtual Background",
@@ -56,6 +59,7 @@ export const FOOTER_NAV = [
 	},
 	{
 		title: "Solutions",
+		className: "",
 		children: [
 			{
 				label: "Livestreaming",

@@ -28,5 +28,13 @@
 }
 
 .text_custom_selection::selection {
-  @apply text-green-300 bg-transparent;
+  background-color: transparent;
+  /* fix cho Firefox */
+  color: #cba6f7;
+}
+
+.text_custom_selection::-moz-selection {
+  background-color: transparent;
+  /* Firefox */
+  color: #cba6f7;
 }

@@ -6,6 +6,7 @@ import { Marquee } from "@/components/bento/marquee";
 import { Globe } from "@/components/ui/globe";
 import { cn } from "@/lib/utils";
 import { bento_card_files } from "@/constants/card-bento.constant";
+import { OrbitingCirclesDemo } from "@/components/bento/orbiting-circles-demo";
 
 const features = [
 	{
@@ -61,9 +62,7 @@ const features = [
 		href: "#",
 		cta: "Learn more",
 		className: "col-span-3 lg:col-span-2",
-		background: (
-			<AnimatedBeamMultipleOutputDemo className="absolute right-2 top-4 h-[300px] border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-105" />
-		),
+		background: <OrbitingCirclesDemo />,
 	},
 	{
 		Icon: BellIcon,

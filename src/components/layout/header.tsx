@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { NAV_LINKS } from "@/constants/nav.constant";
 import { cn } from "@/lib/utils";
-import { LucideIcon, ZapIcon } from "lucide-react";
+import { ChevronRight, LucideIcon, ZapIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -61,7 +61,7 @@ const Navbar = () => {
 							/>
 						</Link>
 
-						<NavigationMenu className="hidden lg:flex">
+						<NavigationMenu className="hidden lg:flex ">
 							<NavigationMenuList>
 								{NAV_LINKS.map((link) => (
 									<NavigationMenuItem key={link.title}>
@@ -70,10 +70,10 @@ const Navbar = () => {
 												<NavigationMenuTrigger>
 													{link.title}
 												</NavigationMenuTrigger>
-												<NavigationMenuContent>
+												<NavigationMenuContent className="bg-[#121212]">
 													<ul
 														className={cn(
-															"grid gap-1 p-4  md:w-[400px] lg:w-[500px] rounded-xl",
+															"grid gap-1 p-4   md:w-[400px] lg:w-[500px] rounded-xl",
 															link.title === "developers"
 																? "lg:grid-cols-[.75fr_1fr]"
 																: "lg:grid-cols-2"
@@ -142,9 +142,12 @@ const ListItem = React.forwardRef<
 					)}
 					{...props}
 				>
-					<div className="flex items-center space-x-2 text-foreground-light hover:text-white duration-100 transition-all ease-out ">
+					<div className="flex items-center group space-x-2 text-foreground-light hover:text-white duration-200 transition-all ease-out ">
 						<Icon className="h-4 w-4 text-current" />
-						<h6 className="text-sm font-medium">{title}</h6>
+						<div className="flex items-center justify-start gap-2">
+							<h6 className="text-sm font-medium w-fit">{title}</h6>
+							<ChevronRight className="size-3 text-transparent translate-x-[-10px] group-hover:text-current transition-all duration-300 ease-out group-hover:translate-x-[-4px]" />
+						</div>
 					</div>
 					<p
 						title={children! as string}

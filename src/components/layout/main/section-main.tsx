@@ -13,14 +13,11 @@ const SectionMain = (_props: ISectionMainProps) => {
 			<div className="overflow-hidden pt-[75px] lg:pt-[80px] left-[0px] w-full md:w-[calc(100dvw-16px)] md:rounded-[24px] lg:rounded-[48px] bg-[#12121236] gradient-border">
 				<div className="max-w-6xl mx-auto flex flex-col gap-y-16 items-center justify-center">
 					<div className="px-6 flex flex-col gap-y-5 w-full sm:w-3/4 md:w-2/3 lg:w-[60%] xl:w-full items-center justify-center text-center text_custom_selection">
-						<p className="mt-4 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-							Why
-							<span className="text-primary"> Waterbus?</span>
+						<p className="mt-4 bg-gradient-to-br from-slate-300 to-slate-500  bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent ">
+							Host meetings, go live, and monitor in real time
 						</p>
-						<p className="max-w-3xl text-center text-lg font-light text-foreground-light">
-							We built Waterbus to prioritize performance and low cost at scale.
-							With that in mind we’ve created a lightweight but powerful
-							platform for real-time media workloads.
+						<p className="text-center max-w-[300px] md:max-w-none mx-auto text-sm sm:text-base lg:text-lg">
+							with built-in video, virtual backgrounds, and beauty filters
 						</p>
 					</div>
 				</div>

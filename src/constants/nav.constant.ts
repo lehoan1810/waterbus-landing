@@ -1,4 +1,11 @@
-import { BookText, LockIcon, MessageSquareMore } from "lucide-react";
+import {
+	BookText,
+	HeartHandshake,
+	LifeBuoy,
+	LockIcon,
+	MessageSquareMore,
+	RefreshCcwDot,
+} from "lucide-react";
 import GitHubLight from "../../public/svg/github";
 
 export const NAV_LINKS = [
@@ -17,12 +24,12 @@ export const NAV_LINKS = [
 					{
 						title: "Changelog",
 						href: "https://changelog.waterbus.tech/",
-						icon: BookText,
+						icon: RefreshCcwDot,
 					},
 					{
 						title: "Support",
 						href: "/features/link-shortening",
-						icon: BookText,
+						icon: LifeBuoy,
 					},
 				],
 			},
@@ -35,14 +42,14 @@ export const NAV_LINKS = [
 						icon: GitHubLight,
 					},
 					{
-						title: "Github Discussions",
+						title: "Discussions",
 						href: "/",
 						icon: MessageSquareMore,
 					},
 					{
 						title: "Sponsor",
 						href: "/",
-						icon: MessageSquareMore,
+						icon: HeartHandshake,
 					},
 				],
 			},

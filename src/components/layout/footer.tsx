@@ -5,6 +5,7 @@ import GitHubLight from "../../../public/svg/github";
 import XformerlyTwitter from "../../../public/svg/x";
 import DiscordLight from "../../../public/svg/discord";
 import Bsky from "../../../public/svg/bsky";
+import { cn } from "@/lib/utils";
 
 const Footer = () => {
 	return (
@@ -46,7 +47,10 @@ const Footer = () => {
 					<div className="mt-12 grid grid-cols-1 gap-8 xl:col-span-2 xl:mt-0">
 						<div className="grid grid-cols-2 gap-8 md:grid-cols-4">
 							{FOOTER_NAV.map((item) => (
-								<div key={item.title} className="space-y-4">
+								<div
+									key={item.title}
+									className={cn("space-y-4", item.className)}
+								>
 									<h3 className="text-base font-medium">{item.title}</h3>
 									<div className="mt-4  flex flex-col gap-3">
 										{item.children.map((child) => (
@@ -69,7 +73,7 @@ const Footer = () => {
 						© 2025 Waterbus. Open source under the Apache 2.0 License.
 					</p>
 					<div>
-						<Link href="/privacy-policy">
+						<Link target="_blank" href="https://status.waterbus.tech/">
 							<div className="flex items-center gap-2 whitespace-nowrap text-primary">
 								<span className="relative block size-1.5">
 									<span className="absolute left-0 top-0 z-50 block size-1.5 origin-center animate-ping rounded-px duration-1000 bg-primary"></span>
