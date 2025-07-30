@@ -6,6 +6,7 @@ export interface OrbitingCirclesProps
 	className?: string;
 	children?: React.ReactNode;
 	reverse?: boolean;
+	continueOnHover?: boolean;
 	duration?: number;
 	delay?: number;
 	radius?: number;
@@ -18,6 +19,7 @@ export function OrbitingCircles({
 	className,
 	children,
 	reverse,
+	continueOnHover = false,
 	duration = 20,
 	radius = 160,
 	path = true,
@@ -56,8 +58,11 @@ export function OrbitingCircles({
 							} as React.CSSProperties
 						}
 						className={cn(
-							`absolute flex size-[var(--icon-size)] transform-gpu animate-orbit items-center justify-center rounded-full`,
-							{ "[animation-direction:reverse]": reverse },
+							`absolute flex size-[var(--icon-size)] transform-gpu  items-center justify-center rounded-full orbit_container`,
+							{
+								"[animation-direction:reverse]": reverse,
+								"group-hover:animate-orbit": continueOnHover,
+							},
 							className
 						)}
 						{...props}

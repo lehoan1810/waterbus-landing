@@ -17,7 +17,6 @@ const ButtonCustom = (props: IButtonCustomProps) => {
 			)}
 		>
 			<HyperText>Start building</HyperText>
-			{/* Start your project */}
 		</Link>
 	);
 };

@@ -1,3 +1,4 @@
+"use client";
 import { BellIcon, FileTextIcon, Share2Icon } from "lucide-react";
 import AnimatedBeamMultipleOutputDemo from "@/components/bento/animated-beam-multiple-outputs";
 import AnimatedListDemo from "@/components/bento/animated-list-demo";
@@ -18,7 +19,7 @@ const features = [
 		className: "col-span-3 lg:col-span-1",
 		background: (
 			<Marquee
-				pauseOnHover
+				continueOnHover
 				className="absolute top-10 [--duration:20s] [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] "
 			>
 				{bento_card_files.map((f, idx) => (
@@ -72,7 +73,7 @@ const features = [
 		cta: "Learn more",
 		className: "col-span-3 lg:col-span-1",
 		background: (
-			<AnimatedListDemo className="absolute right-2 top-4 h-[300px] w-full scale-75 border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-90" />
+			<AnimatedListDemo className="absolute right-2 top-4 h-[400px] w-full scale-75 border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-90" />
 		),
 	},
 ];
