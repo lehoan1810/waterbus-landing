@@ -144,6 +144,7 @@
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
   --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
+  --font-geist-mono: var(--font-geist-mono);
 
   @keyframes marquee {
     from {

@@ -1,4 +1,5 @@
 "use client";
+import ButtonCustomV2 from "@/components/button/button-custom";
 import { MeteorsBackground } from "@/components/layout/banner/banner-grid";
 import AnimationContainer from "@/components/ui/animation-container";
 import { Button } from "@/components/ui/button";
@@ -48,13 +49,27 @@ const BannerHome = (_props: IBannerLynxProps) => {
 						Rust.
 					</p>
 					<div className="flex items-center gap-2 z-10">
-						<ButtonCustom className="h-[38px] text-sm px-4 py-2" />
-						<Link
+						{/* <ButtonCustom className="h-[38px] text-sm px-4 py-2" /> */}
+						<ButtonCustomV2
+							variant="primary"
+							size="md"
+							label="START BUILDING"
+							icon="github"
+							className="disabled:opacity-40 w-fit disabled:cursor-default"
+						/>
+						<ButtonCustomV2
+							variant="link"
+							size="md"
+							label="TRY DEMO"
+							icon="github"
+							className="disabled:opacity-40 w-fit disabled:cursor-default"
+						/>
+						{/* <Link
 							href="/docs"
 							className="relative justify-center cursor-pointer inline-flex items-center space-x-2 text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border text-foreground bg-alternative dark:bg-muted hover:bg-selection border-strong hover:border-neutral-600 focus-visible:outline-brand-600 data-[state=open]:bg-selection data-[state=open]:outline-brand-600 data-[state=open]:border-button-hover text-sm px-4 py-2 h-[38px]"
 						>
 							Try a demo
-						</Link>
+						</Link> */}
 					</div>
 				</AnimationContainer>
 			</div>

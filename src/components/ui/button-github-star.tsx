@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import ButtonCustomV2 from "@/components/button/button-custom";
 import { Button } from "@/components/ui/button";
 import ButtonCustom from "@/components/ui/button-custom";
 import Link from "next/link";
@@ -46,7 +47,14 @@ const ButtonGithubStar = () => {
 				<p className="border-transparent text-xs font-medium ">{stars}</p>
 			</Link>
 			<div className=" flex items-center justify-start gap-4">
-				<ButtonCustom />
+				{/* <ButtonCustom /> */}
+				<ButtonCustomV2
+					variant="primary"
+					size="md"
+					label="START BUILDING"
+					icon="github"
+					className="disabled:opacity-40 w-full disabled:cursor-default"
+				/>
 			</div>
 		</div>
 	);

@@ -26,6 +26,12 @@ const customFont = localFont({
 	display: "swap",
 });
 
+const GeistMono = Geist_Mono({
+	subsets: ["latin"],
+	variable: "--font-geist-mono",
+	display: "swap",
+});
+
 export const metadata: Metadata = {
 	title: "Waterbus | The Open Source WebRTC SFU.",
 	description:
@@ -58,7 +64,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html suppressHydrationWarning className="dark" lang="en">
-			<body className={`${customFont.className} antialiased font-san`}>
+			<body
+				className={`${customFont.className} ${GeistMono.variable} antialiased font-san`}
+			>
 				<Header />
 				{children}
 				<Footer />
