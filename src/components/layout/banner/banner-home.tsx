@@ -5,7 +5,7 @@ import AnimationContainer from "@/components/ui/animation-container";
 import { Button } from "@/components/ui/button";
 import ButtonCustom from "@/components/ui/button-custom";
 
-import { ArrowRightIcon, ChevronRight } from "lucide-react";
+import { ArrowRightIcon, ChevronRight, Zap } from "lucide-react";
 import Link from "next/link";
 
 interface IBannerLynxProps {
@@ -18,9 +18,9 @@ const BannerHome = (_props: IBannerLynxProps) => {
 		target?.scrollIntoView({ behavior: "smooth" });
 	};
 	return (
-		<div className="relative h-[30rem] md:h-[40rem] text_custom_selection">
+		<div className="relative text_custom_selection">
 			{/* <MeteorsBackground gridSize={120} meteorCount={3} /> */}
-			<div className="mx-auto w-full max-w-5xl px-6 h-full py-16 md:py-24 lg:px-16 lg:py-24 xl:px-20 pt-8 pb-10 md:pt-16 ">
+			<div className="mx-auto w-full max-w-5xl px-6 h-full lg:px-16 pt-20">
 				<AnimationContainer className="flex items-center justify-center flex-col lg:gap-8 gap-4">
 					<button
 						type="button"
@@ -33,6 +33,7 @@ const BannerHome = (_props: IBannerLynxProps) => {
 						<span className="backdrop absolute inset-[1px] rounded-full bg-neutral-950 transition-colors duration-200 group-hover:bg-neutral-900" />
 						<span className="h-full w-full blur-md absolute bottom-0 inset-x-0 bg-gradient-to-tr from-red-600/20"></span>
 						<span className="z-10 py-0.5 text-sm text-neutral-100 flex items-center justify-center gap-1">
+							<Zap className="text-yellow-500 size-5" fill="currentColor" />
 							Introducing Waterbus
 							<ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
 						</span>
@@ -42,14 +43,12 @@ const BannerHome = (_props: IBannerLynxProps) => {
 						<p className="text-primary text-center">Scale without limits</p>
 					</h1>
 					<p className=" text-white  text-center text-sm  lg:mb-0 sm:text-base lg:text-lg">
-						Waterbus is an open source WebRTC infrastructure for real-time
-						video, audio, and data. Start your project with a distributed SFU,
-						ultra-low latency streaming (LL-HLS), scalable signaling, cloud
-						egress, QUIC transport, and SVC/Simulcast support — all written in
-						Rust.
+						Waterbus is an open-source WebRTC stack for real-time video, audio,
+						and data — featuring a distributed SFU, LL-HLS streaming, scalable
+						signaling, QUIC transport, cloud egress, and Simulcast support, all
+						in Rust.
 					</p>
 					<div className="flex items-center gap-2 z-10">
-						{/* <ButtonCustom className="h-[38px] text-sm px-4 py-2" /> */}
 						<ButtonCustomV2
 							variant="primary"
 							size="md"
@@ -80,9 +79,8 @@ const BannerHome = (_props: IBannerLynxProps) => {
 					zIndex: 0,
 					borderRadius: "100%",
 					width: "100%",
-					maxWidth: "500px",
-					height: "500px",
-					marginTop: "thấy 250px",
+					maxWidth: "400px",
+					height: "400px",
 					position: "absolute",
 					top: "50%",
 					left: "50%",

@@ -1,77 +1,94 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+"use client";
+import CardAdaptiveStream from "@/components/bento/card-adaptive-stream";
+import CardBlazinglyFast from "@/components/bento/card-blazingly-fast";
+import CardDistributed from "@/components/bento/card-distributed";
+import CardEgress from "@/components/bento/card-egress";
+import CardHybridTopology from "@/components/bento/card-hybrid-topology";
+import CardVirtualBackground from "@/components/bento/card-virtual-background";
+import {
+	Activity,
+	PictureInPicture,
+	ScatterChart,
+	Share,
+	Upload,
+	Zap,
+} from "lucide-react";
+import { Fragment } from "react";
 
-import { cn } from "@/lib/utils";
-import { ArrowRightIcon } from "lucide-react";
-
-interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
-	children: ReactNode;
-	className?: string;
+interface IBentoGridProps {
+	// Props go here
 }
 
-interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
-	name: string;
-	className: string;
-	background: ReactNode;
-	Icon: React.ElementType;
-	description: string;
-	href: string;
-	cta: string;
-}
+const listContentCard = [
+	{
+		id: 1,
+		children: (
+			<CardBlazinglyFast
+				title="Blazingly Fast"
+				description="Built in Rust for low-latency performance and maximum efficiency, handling real-time media at scale."
+				icon={<Zap />}
+			/>
+		),
+	},
+	{
+		id: 2,
+		children: (
+			<CardHybridTopology
+				title="Hybrid Topology"
+				description="Supports both SFU and P2P architectures. Optimize media routing dynamically based on the user's network conditions and geography."
+				icon={<Share />}
+			/>
+		),
+	},
+	{
+		id: 3,
+		children: (
+			<CardAdaptiveStream
+				title="Adaptive Stream"
+				description="Smart bandwidth-aware simulcast handling. Automatically adjusts video quality in real-time to ensure smooth playback."
+				icon={<Activity />}
+			/>
+		),
+	},
+	{
+		id: 4,
+		children: (
+			<CardEgress
+				title="Egress"
+				description="Stream your sessions to HLS. Plug in custom pipelines for archiving, compliance, or broadcasting."
+				icon={<Upload />}
+			/>
+		),
+	},
+	{
+		id: 5,
+		children: (
+			<CardVirtualBackground
+				title="Virtual Background"
+				description="AI-powered background blur and replacement, running client-side or via custom compute egress nodes."
+				icon={<PictureInPicture />}
+			/>
+		),
+	},
+	{
+		id: 6,
+		children: (
+			<CardDistributed
+				title="Distributed"
+				description="Horizontally scalable architecture with Redis-backed signaling and media coordination across multiple nodes."
+				icon={<ScatterChart />}
+			/>
+		),
+	},
+];
 
-const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
+const BentoGrid = (_props: IBentoGridProps) => {
 	return (
-		<div
-			className={cn(
-				"grid w-full auto-rows-[26rem] grid-cols-3 gap-4",
-				className
-			)}
-			{...props}
-		>
-			{children}
+		<div className="container mx-auto px-4 md:px-12 lg:px-16 xl:px-20 overflow-hidden grid grid-cols-1 gap-4  md:gap-4 xl:gap-3 2xl:gap-6 md:grid-cols-12">
+			{listContentCard.map((item) => (
+				<Fragment key={item.id}>{item.children}</Fragment>
+			))}
 		</div>
 	);
 };
-
-const BentoCard = ({
-	name,
-	className,
-	background,
-	Icon,
-	description,
-	href,
-	cta,
-	...props
-}: BentoCardProps) => (
-	<div
-		key={name}
-		className={cn(
-			"group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
-			" group relative flex flex-col justify-between overflow-hidden rounded-xl  col-span-3 lg:col-span-2 border border-neutral-800 hover:border-neutral-600 duration-300 bg-neutral-900",
-			className
-		)}
-		{...props}
-	>
-		<div>{background}</div>
-		<div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
-			<Icon className="h-12 w-12 origin-left transform-gpu text-neutral-700 group-hover:text-[#3ECF8E] transition-all duration-300 ease-in-out group-hover:scale-75" />
-			<h3 className="text-xl font-semibold text-neutral-300">{name}</h3>
-			<p className="max-w-lg text-neutral-400">{description}</p>
-		</div>
-
-		<div
-			className={cn(
-				"pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-			)}
-		>
-			<button className="pointer-events-auto">
-				<a href={href}>
-					{cta}
-					<ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
-				</a>
-			</button>
-		</div>
-		<div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 bg-alternative" />
-	</div>
-);
-
-export { BentoCard, BentoGrid };
+export default BentoGrid;

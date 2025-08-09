@@ -6,7 +6,7 @@ interface ISectionPricingProps {
 
 const SectionPricing = (_props: ISectionPricingProps) => {
 	return (
-		<div className="grid gap-4 mt-20 md:grid-cols-2 md:gap-4">
+		<div className="grid gap-4 mt-10 md:grid-cols-2 md:gap-4">
 			<div className="flex flex-col items-center space-y-4 border py-4  min-h-72">
 				<h4 className="text-2xl font-bold py-4">Free</h4>
 				<ul className="space-y-2 text-sm text-muted-foreground ">

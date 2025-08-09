@@ -4,7 +4,7 @@ interface ISectionMainProps {
 
 const SectionMain = (_props: ISectionMainProps) => {
 	return (
-		<>
+		<div className="relative pt-40">
 			<div className="will-change-opacity absolute h-[414px] overflow-hidden w-full -top-16 mask-[radial-gradient(90%_80%_at_50%_100%,#D9D9D9_80%,rgba(115,115,115,0)_100%)] md:mask-[radial-gradient(50%_65.7%_at_50%_34.3%,#D9D9D9_0%,rgba(115,115,115,0)_100%)]">
 				<div className="transform-gpu top-1/2 -translate-y-1/2 absolute h-[60px] md:h-[90px] w-full left-1/2 -translate-x-1/2 md:blur-[50px] blur-[25px] [border-radius:50%_100%] bg-[#a624b4] mix-blend-plus-lighter"></div>
 				<div className="transform-gpu absolute top-1/2 -translate-y-1/2 h-[60px] md:h-[90px] w-full -right-[35%] md:blur-[50px] blur-[25px] [border-radius:50%_100%] bg-[#fd79f0] mix-blend-plus-lighter"></div>
@@ -22,7 +22,7 @@ const SectionMain = (_props: ISectionMainProps) => {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 export default SectionMain;

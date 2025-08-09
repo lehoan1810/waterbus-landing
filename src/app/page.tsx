@@ -1,13 +1,11 @@
 "use client";
+import BentoGrid from "@/components/bento/bento-grid";
 import ButtonCustomV2 from "@/components/button/button-custom";
 import BannerHome from "@/components/layout/banner/banner-home";
 import VideoHome from "@/components/layout/banner/video-home";
-import { BentoDemo } from "@/components/layout/main/section-bento";
 import SectionMain from "@/components/layout/main/section-main";
 import SectionPricing from "@/components/layout/main/section-pricing";
-import ButtonCustom from "@/components/ui/button-custom";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -41,16 +39,13 @@ export default function Home() {
 		},
 	];
 	return (
-		<main>
+		<main className="space-y-10 sm:space-y-20">
 			<BannerHome />
-			<div className="container mx-auto px-4 md:px-12 lg:px-16 xl:px-20  py-10  overflow-hidden">
-				<BentoDemo />
-			</div>
-			<div className="pt-40 flex flex-col gap-y-16 md:gap-y-24 items-center justify-center relative">
+			<BentoGrid />
+			<div className=" flex flex-col gap-y-16 md:gap-y-24 items-center justify-center relative">
 				<SectionMain />
 			</div>
-
-			<div className="container mx-auto px-6  lg:px-16 xl:px-28 py-10  overflow-hidden z-[99999]">
+			<div className="container mx-auto px-6  lg:px-16 xl:px-28 overflow-hidden z-[99999]">
 				<div className="flex items-center flex-wrap gap-5 md:gap-8 justify-center pt-5 pb-8 md:py-11  w-full max-w-6xl bg-transparent mx-auto ">
 					{listVideo.map((item, index) => (
 						<p
@@ -68,19 +63,18 @@ export default function Home() {
 			</div>
 			<div
 				id="pricing"
-				className="max-w-3xl  pb-12 mx-auto space-y-6 mt-10 px-4  md:px-6"
+				className="max-w-3xl  pb-12 mx-auto space-y-6  px-4  md:px-6"
 			>
 				<p className="mt-4 bg-gradient-to-br from-slate-300 to-slate-500  bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent ">
 					Fully open source, built for developers
 				</p>
-				<p className="text-center mx-auto	max-w-[300px] md:max-w-none text-sm sm:text-base lg:text-lg">
+				<p className="text-center mx-auto	max-w-[500px] md:max-w-none text-sm sm:text-base lg:text-lg">
 					Sponsor the project to support infrastructure costs and continued
 					development.
 				</p>
 				<SectionPricing />
 			</div>
-
-			<div className="relative overflow-x-clip py-20 md:py-32">
+			<div className="relative overflow-x-clip  md:py-20">
 				<Image
 					width={700}
 					height={700}
