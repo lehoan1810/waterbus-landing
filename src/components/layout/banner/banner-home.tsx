@@ -19,9 +19,8 @@ const BannerHome = (_props: IBannerLynxProps) => {
 	};
 	return (
 		<div className="relative text_custom_selection">
-			{/* <MeteorsBackground gridSize={120} meteorCount={3} /> */}
 			<div className="mx-auto w-full max-w-5xl px-6 h-full lg:px-16 pt-20">
-				<AnimationContainer className="flex items-center justify-center flex-col lg:gap-8 gap-4">
+				<div className="flex items-center justify-center flex-col lg:gap-8 gap-4">
 					<button
 						type="button"
 						onClick={handleScroll}
@@ -70,7 +69,7 @@ const BannerHome = (_props: IBannerLynxProps) => {
 							Try a demo
 						</Link> */}
 					</div>
-				</AnimationContainer>
+				</div>
 			</div>
 			<div
 				style={{

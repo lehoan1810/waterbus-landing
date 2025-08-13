@@ -78,7 +78,7 @@ export default function Home() {
 				<Image
 					width={700}
 					height={700}
-					src="https://livewire.laravel.com/img/blur.svg"
+					src="/svg/blur.svg"
 					alt="Waterbus Demo"
 					className="animate_pulse_slow absolute w-[700px] h-[700px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 "
 				/>

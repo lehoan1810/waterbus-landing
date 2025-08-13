@@ -6,6 +6,7 @@ import XformerlyTwitter from "../../../public/svg/x";
 import DiscordLight from "../../../public/svg/discord";
 import Bsky from "../../../public/svg/bsky";
 import { cn } from "@/lib/utils";
+import Zulip from "../../../public/svg/zulip";
 
 const Footer = () => {
 	return (
@@ -33,8 +34,11 @@ const Footer = () => {
 								<GitHubLight className="size-5 text-neutral-500 hover:text-white duration-300" />
 							</Link>
 
-							<Link target="_blank" href="https://discord.com/">
-								<DiscordLight className="size-5 text-neutral-500 hover:text-white duration-300" />
+							<Link
+								target="_blank"
+								href="https://waterbus.zulipchat.com/join/n5b2dof6flynjnxsv62dfodd/"
+							>
+								<Zulip className="size-5 text-neutral-500 hover:text-white duration-300" />
 							</Link>
 							<Link
 								target="_blank"

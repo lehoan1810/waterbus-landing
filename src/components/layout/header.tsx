@@ -44,81 +44,79 @@ const Navbar = () => {
 		<header
 			className={cn(
 				"sticky top-0 inset-x-0 h-16 w-full border-b border-transparent z-[99999] select-none",
-				scroll && "border-background/80 bg-background/40 backdrop-blur-md"
+				"bg-[#121212]"
 			)}
 		>
-			<AnimationContainer reverse delay={0.1} className="size-full">
-				<MaxWidthWrapper className="relative flex justify-between h-16 mx-auto lg:container lg:px-16 xl:px-20">
-					<div className="flex items-center space-x-12">
-						<Link href="/" className="flex items-center justify-start gap-2">
-							<Image
-								src="/images/img_logo-footer.png"
-								alt="Waterbus Open Source"
-								width={128}
-								height={16}
-								className="w-full h-4 object-contain"
-								priority
-							/>
-						</Link>
+			<MaxWidthWrapper className="relative flex justify-between h-16 mx-auto lg:container lg:px-16 xl:px-20">
+				<div className="flex items-center space-x-12">
+					<Link href="/" className="flex items-center justify-start gap-2">
+						<Image
+							src="/images/img_logo-footer.png"
+							alt="Waterbus Open Source"
+							width={128}
+							height={16}
+							className="w-full h-4 object-contain"
+							priority
+						/>
+					</Link>
 
-						<NavigationMenu className="hidden lg:flex ">
-							<NavigationMenuList>
-								{NAV_LINKS.map((link) => (
-									<NavigationMenuItem key={link.title}>
-										{link.menu ? (
-											<>
-												<NavigationMenuTrigger>
-													{link.title}
-												</NavigationMenuTrigger>
-												<NavigationMenuContent className="bg-[#121212]">
-													<ul
-														className={cn(
-															"grid gap-1 p-4   md:w-[400px] lg:w-[500px] rounded-xl",
-															link.title === "developers"
-																? "lg:grid-cols-[.75fr_1fr]"
-																: "lg:grid-cols-2"
-														)}
-													>
-														{(link?.menu || [])?.map((item, index) => (
-															<div key={index}>
-																<p className="text-neutral-400 px-3 block font-mono text-xs uppercase tracking-widest mb-5">
-																	{item.title}
-																</p>
-																{(item?.subMenu || [])?.map((menuItem) => (
-																	<ListItem
-																		key={menuItem.title}
-																		title={menuItem.title}
-																		href={menuItem.href}
-																		icon={menuItem.icon}
-																	></ListItem>
-																))}
-															</div>
-														))}
-													</ul>
-												</NavigationMenuContent>
-											</>
-										) : (
-											<div>
-												<NavigationMenuLink
-													className={navigationMenuTriggerStyle()}
+					<NavigationMenu className="hidden lg:flex ">
+						<NavigationMenuList>
+							{NAV_LINKS.map((link) => (
+								<NavigationMenuItem key={link.title}>
+									{link.menu ? (
+										<>
+											<NavigationMenuTrigger>
+												{link.title}
+											</NavigationMenuTrigger>
+											<NavigationMenuContent className="bg-[#121212]">
+												<ul
+													className={cn(
+														"grid gap-1 p-4   md:w-[400px] lg:w-[500px] rounded-xl",
+														link.title === "developers"
+															? "lg:grid-cols-[.75fr_1fr]"
+															: "lg:grid-cols-2"
+													)}
 												>
-													{link.title}
-												</NavigationMenuLink>
-											</div>
-										)}
-									</NavigationMenuItem>
-								))}
-							</NavigationMenuList>
-						</NavigationMenu>
-					</div>
+													{(link?.menu || [])?.map((item, index) => (
+														<div key={index}>
+															<p className="text-neutral-400 px-3 block font-mono text-xs uppercase tracking-widest mb-5">
+																{item.title}
+															</p>
+															{(item?.subMenu || [])?.map((menuItem) => (
+																<ListItem
+																	key={menuItem.title}
+																	title={menuItem.title}
+																	href={menuItem.href}
+																	icon={menuItem.icon}
+																></ListItem>
+															))}
+														</div>
+													))}
+												</ul>
+											</NavigationMenuContent>
+										</>
+									) : (
+										<div>
+											<NavigationMenuLink
+												className={navigationMenuTriggerStyle()}
+											>
+												{link.title}
+											</NavigationMenuLink>
+										</div>
+									)}
+								</NavigationMenuItem>
+							))}
+						</NavigationMenuList>
+					</NavigationMenu>
+				</div>
 
-					<div className=" items-center gap-2 hidden lg:flex  animate-fade-in !scale-100 delay-300">
-						<ButtonGithubStar />
-					</div>
+				<div className=" items-center gap-2 hidden lg:flex  animate-fade-in !scale-100 delay-300">
+					<ButtonGithubStar />
+				</div>
 
-					<MobileNavbar />
-				</MaxWidthWrapper>
-			</AnimationContainer>
+				<MobileNavbar />
+			</MaxWidthWrapper>
 		</header>
 	);
 };

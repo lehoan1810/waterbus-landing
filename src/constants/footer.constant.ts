@@ -26,8 +26,8 @@ export const FOOTER_NAV = [
 				href: "https://docs.waterbus.tech/",
 			},
 			{
-				label: "Discord",
-				href: "https://discord.com/",
+				label: "Zulip",
+				href: "https://waterbus.zulipchat.com/join/n5b2dof6flynjnxsv62dfodd/",
 			},
 			{
 				label: "Github",
