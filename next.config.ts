@@ -1,7 +1,22 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+	experimental: {
+		optimizePackageImports: ["lucide-react", "framer-motion"],
+	},
+	async headers() {
+		return [
+			{
+				source: "/:all*(svg|jpg|jpeg|png|webp|avif|gif|woff2|woff)",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
+		];
+	},
 };
 
 export default nextConfig;
