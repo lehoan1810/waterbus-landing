@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Elephant Outline with Layered Frames</title>
+  <desc>Stylized elephant made of thin rounded strokes with multiple layered rounded-rect frames, similar to the provided reference.</desc>
+
+  <!-- Background (transparent) -->
+  <rect x="0" y="0" width="512" height="512" fill="none"/>
+
+  <!-- Layered rounded-rect frames -->
+  <g stroke="#9CA3AF" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <rect x="60" y="60" width="392" height="392" rx="48"/>
+    <rect x="50" y="50" width="412" height="412" rx="54" opacity="0.65"/>
+    <rect x="40" y="40" width="432" height="432" rx="60" opacity="0.45"/>
+    <rect x="30" y="30" width="452" height="452" rx="66" opacity="0.30"/>
+    <rect x="20" y="20" width="472" height="472" rx="72" opacity="0.20"/>
+  </g>
+
+  <!-- Elephant base outline (thin, gray) -->
+  <g stroke="#9CA3AF" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <!-- Top head curve -->
+    <path d="M120 210 Q160 140 300 140 Q340 140 360 160 Q380 180 380 220" />
+    <!-- Right vertical head line -->
+    <path d="M380 220 L380 320" />
+    <!-- Ear & cheek curve (left side) -->
+    <path d="M120 210 Q100 250 140 285 Q160 302 160 330 L160 360 Q160 420 220 420 Q250 420 260 400" />
+    <!-- Eye -->
+    <circle cx="320" cy="240" r="10" />
+    <!-- Smile / trunk upper -->
+    <path d="M260 300 Q320 250 420 300" />
+    <!-- Lower trunk loop -->
+    <path d="M260 400 Q250 350 310 360 Q340 365 360 380 Q350 440 300 440 Q270 440 260 400" opacity="0.95"/>
+  </g>
+</svg>

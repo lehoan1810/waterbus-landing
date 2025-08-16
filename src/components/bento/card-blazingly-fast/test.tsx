@@ -1,146 +1,198 @@
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-// import { detectBrowser, isBrowser } from "@/lib/utils";
+"use client";
+
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 interface Props {
 	className?: string;
 	hasGlow?: boolean;
+	/** SVG nền hiển thị (nhìn thấy) */
+	imageSrc?: string;
+	/** SVG nguồn để lấy shapes vẽ spotlight (mặc định = imageSrc) */
+	svgSrc?: string;
+	/** độ dày đường stroke */
+	strokeWidth?: number;
 }
 
-const DatabaseVisual: React.FC<Props> = ({ className, hasGlow = true }) => {
-	const containerRef = useRef(null);
-	const ref = useRef(null);
-	const [gradientPos, setGradientPos] = useState({ x: 0, y: 0 });
-	// const isSafari = isBrowser && detectBrowser() === "Safari";
+const DatabaseVisual: React.FC<Props> = ({
+	className,
+	hasGlow = true,
+	imageSrc = "/images/animations_2.svg",
+	svgSrc,
+	strokeWidth = 1.25,
+}) => {
+	const svgRef = useRef<SVGSVGElement | null>(null);
+	const rafRef = useRef<number | null>(null);
 
-	const handleGlow = (event: any) => {
-		if (!ref.current || !containerRef.current || !hasGlow) return null;
+	const [vb, setVb] = useState<[number, number, number, number]>([
+		0, 0, 390, 430,
+	]);
+	const [whiteMarkup, setWhiteMarkup] = useState<string>(""); // outline trắng
+	const [pinkMarkup, setPinkMarkup] = useState<string>(""); // spotlight hồng
+	const [pos, setPos] = useState({ x: 0, y: 0 });
 
-		const containerRefElement = containerRef.current as HTMLDivElement;
+	// Đọc SVG mới, lấy viewBox + clone shapes
+	useEffect(() => {
+		const url = svgSrc || imageSrc;
+		let cancelled = false;
 
-		const {
-			x: contX,
-			y: contY,
-			width: containerWidth,
-			height: containerHeight,
-		} = containerRefElement.getBoundingClientRect();
-		const xCont = event.clientX - contX;
-		const yCont = event.clientY - contY;
+		(async () => {
+			try {
+				const res = await fetch(url);
+				const raw = await res.text();
+				const parser = new DOMParser();
+				const doc = parser.parseFromString(raw, "image/svg+xml");
+				const svgEl = doc.querySelector("svg");
+				if (!svgEl) return;
 
-		const isContainerHovered =
-			xCont > -3 &&
-			xCont < containerWidth + 3 &&
-			yCont > -3 &&
-			yCont < containerHeight + 3;
+				// viewBox
+				const vbAttr = svgEl.getAttribute("viewBox");
+				if (vbAttr) {
+					const nums = vbAttr.split(/\s+/).map((n) => Number(n));
+					if (nums.length === 4) setVb([nums[0], nums[1], nums[2], nums[3]]);
+				} else {
+					const w = Number(svgEl.getAttribute("width") || 390);
+					const h = Number(svgEl.getAttribute("height") || 430);
+					setVb([0, 0, w, h]);
+				}
 
-		if (!isContainerHovered) return;
+				// Thu thập các shape vector để stroke
+				const shapes = svgEl.querySelectorAll(
+					"path, polyline, polygon, line, rect, circle, ellipse"
+				);
 
-		const svgElement = ref.current as SVGElement;
-		const { x: svgX, y: svgY } = svgElement.getBoundingClientRect();
-		const x = event.clientX - svgX;
-		const y = event.clientY - svgY;
-		setGradientPos({ x, y });
-	};
+				const whiteGroup = doc.createElementNS(
+					"http://www.w3.org/2000/svg",
+					"g"
+				);
+				const pinkGroup = doc.createElementNS(
+					"http://www.w3.org/2000/svg",
+					"g"
+				);
+
+				shapes.forEach((node) => {
+					// Outline trắng (nhìn rõ hình, không fill)
+					const wNode = node.cloneNode(true) as Element;
+					wNode.setAttribute("fill", "none");
+					wNode.setAttribute("stroke", "#FFFFFF");
+					wNode.setAttribute("stroke-linejoin", "round");
+					wNode.setAttribute("vector-effect", "non-scaling-stroke");
+					if (!wNode.getAttribute("stroke-width")) {
+						wNode.setAttribute("stroke-width", String(strokeWidth));
+					}
+					whiteGroup.appendChild(wNode);
+
+					// Spotlight hồng (gradient)
+					const pNode = node.cloneNode(true) as Element;
+					pNode.setAttribute("fill", "none");
+					pNode.setAttribute("stroke", "url(#spot)");
+					pNode.setAttribute("stroke-linejoin", "round");
+					pNode.setAttribute("vector-effect", "non-scaling-stroke");
+					if (!pNode.getAttribute("stroke-width")) {
+						pNode.setAttribute("stroke-width", String(strokeWidth));
+					}
+					pinkGroup.appendChild(pNode);
+				});
+
+				if (!cancelled) {
+					setWhiteMarkup(whiteGroup.innerHTML);
+					setPinkMarkup(pinkGroup.innerHTML);
+				}
+			} catch (e) {
+				console.warn("Cannot load SVG for spotlight:", e);
+			}
+		})();
+
+		return () => {
+			cancelled = true;
+		};
+	}, [imageSrc, svgSrc, strokeWidth]);
+
+	// Move spotlight theo chuột (mapping sang viewBox)
+	const handlePointerMove = useCallback(
+		(e: React.PointerEvent) => {
+			if (!hasGlow || !svgRef.current) return;
+			const { clientX, clientY } = e;
+			if (rafRef.current) cancelAnimationFrame(rafRef.current);
+			rafRef.current = requestAnimationFrame(() => {
+				const rect = svgRef.current!.getBoundingClientRect();
+				const [vbX, vbY, vbW, vbH] = vb;
+				const x = (clientX - rect.left) * (vbW / rect.width) + vbX;
+				const y = (clientY - rect.top) * (vbH / rect.height) + vbY;
+				setPos({ x, y });
+			});
+		},
+		[hasGlow, vb]
+	);
 
 	useEffect(() => {
-		window.addEventListener("mousemove", handleGlow);
 		return () => {
-			window.removeEventListener("mousemove", handleGlow);
+			if (rafRef.current) cancelAnimationFrame(rafRef.current);
 		};
 	}, []);
 
-	const gradientTransform = `translate(${gradientPos?.x} ${gradientPos?.y}) rotate(45) scale(166 180)`;
+	const gradientTransform = `translate(${pos.x} ${pos.y}) rotate(45) scale(90 90)`;
 
 	return (
 		<figure
 			className={cn("absolute inset-0 z-0", className)}
-			ref={containerRef}
 			role="img"
-			aria-label="Supabase Postgres database visual composition"
+			aria-label="Database visual with pink spotlight"
 		>
-			<span className="absolute group w-full md:w-auto h-full md:aspect-square flex items-end md:items-center justify-center md:justify-end right-0 left-0 md:left-auto xl:-right-12 2xl:right-0 top-12 md:top-0 md:bottom-0 my-auto">
+			<span
+				className="absolute group w-full md:w-auto h-full md:aspect-square flex items-end md:items-center justify-center md:justify-end right-0 left-0 md:left-auto xl:-right-12 2xl:right-0 top-12 md:top-0 md:bottom-0 my-auto"
+				onPointerMove={handlePointerMove}
+			>
+				{/* Ảnh nền: chính là SVG mới để hiển thị tổng thể */}
 				<Image
-					src="/images/database-dark.webp"
-					alt="Supabase Postgres database"
+					src={imageSrc}
+					alt="visual"
 					fill
 					priority
 					quality={100}
 					sizes="100%"
 					draggable={false}
-					className="hidden dark:block absolute antialiased inset-0 object-contain object-center z-0 w-full md:w-auto h-full transition-opacity group-hover:opacity-80"
+					className="hidden dark:block absolute antialiased inset-0 object-contain object-center z-0 w-full h-full md:w-auto transition-opacity group-hover:opacity-80"
 				/>
 				<Image
-					src="/images/database-light.webp"
-					alt="Supabase Postgres database"
+					src="/images/animations_3.svg"
+					alt="visual"
 					fill
 					priority
 					quality={100}
-					draggable={false}
 					sizes="100%"
-					className="dark:hidden absolute antialiased inset-0 object-contain object-center z-0 w-full md:w-auto h-full transition-opacity group-hover:opacity-80"
+					draggable={false}
+					className="absolute top-0 left-0  z-20"
 				/>
+
+				{/* Lớp overlay vẽ outline + spotlight từ chính shapes của SVG mới */}
 				<svg
-					ref={ref}
+					ref={svgRef}
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
-					viewBox="0 0 390 430"
-					className="absolute w-full h-full z-10 m-auto will-change-transform opacity-0 transition-opacity group-hover:opacity-100"
+					viewBox={`${vb[0]} ${vb[1]} ${vb[2]} ${vb[3]}`}
+					className="absolute size-full z-10 m-auto will-change-transform opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none"
 				>
-					<g
-						stroke="hsl(var(--foreground-lighter))"
-						filter="url(#filter5_bd_467_4905)"
-					>
-						<path d="M192.144 125.816h-53.465c-8.506 0-16.159 5.17-19.334 13.061L99.0045 189.43c-3.0613 7.608-1.3448 16.306 4.3775 22.181l10.232 10.506c4.792 4.919 7.474 11.516 7.474 18.384l-.001 14.473c0 20.197 16.373 36.569 36.569 36.569 6.16 0 11.154-4.993 11.154-11.153l.001-86.241c0-18.629 7.441-36.486 20.668-49.602 2.746-2.723 7.178-2.704 9.9.041 2.722 2.745 2.703 7.178-.042 9.9-10.577 10.488-16.526 24.766-16.526 39.661l-.001 86.241c0 13.892-11.262 25.153-25.154 25.153-27.928 0-50.569-22.64-50.569-50.569l.001-14.474c0-3.218-1.257-6.309-3.503-8.615L93.353 221.38c-9.5904-9.847-12.4673-24.424-7.3366-37.176l20.3406-50.553c5.308-13.192 18.101-21.835 32.322-21.835h55.729v.084h10.339c49.104 0 88.91 39.806 88.91 88.91v50.842c0 3.866-3.134 7-7 7s-7-3.134-7-7V200.81c0-41.372-33.538-74.91-74.91-74.91H193.23c-.37 0-.732-.029-1.086-.084Z" />
-						<path d="M210.03 283.94c0-3.866-3.134-7-7-7s-7 3.134-7 7v3.113c0 26.959 21.854 48.814 48.813 48.814 26.351 0 47.825-20.879 48.781-46.996h24.614c3.866 0 7-3.134 7-7s-3.134-7-7-7h-26.841c-30.744 0-60.256-12.083-82.173-33.643-2.756-2.711-7.188-2.675-9.899.081-2.711 2.756-2.675 7.188.081 9.9 21.725 21.371 50.116 34.423 80.228 37.134-.679 18.629-15.995 33.524-34.791 33.524-19.227 0-34.813-15.587-34.813-34.814v-3.113ZM238.03 202.145c0 4.792 3.885 8.677 8.677 8.677s8.676-3.885 8.676-8.677-3.884-8.676-8.676-8.676-8.677 3.884-8.677 8.676Z" />
-					</g>
-					<path
-						stroke="url(#a)"
-						d="M192.144 125.816h-53.465c-8.506 0-16.159 5.17-19.334 13.061L99.0045 189.43c-3.0613 7.608-1.3448 16.306 4.3775 22.181l10.232 10.506c4.792 4.919 7.474 11.516 7.474 18.384l-.001 14.473c0 20.197 16.373 36.569 36.569 36.569 6.16 0 11.154-4.993 11.154-11.153l.001-86.241c0-18.629 7.441-36.486 20.668-49.602 2.746-2.723 7.178-2.704 9.9.041 2.722 2.745 2.703 7.178-.042 9.9-10.577 10.488-16.526 24.766-16.526 39.661l-.001 86.241c0 13.892-11.262 25.153-25.154 25.153-27.928 0-50.569-22.64-50.569-50.569l.001-14.474c0-3.218-1.257-6.309-3.503-8.615L93.353 221.38c-9.5904-9.847-12.4673-24.424-7.3366-37.176l20.3406-50.553c5.308-13.192 18.101-21.835 32.322-21.835h55.729v.084h10.339c49.104 0 88.91 39.806 88.91 88.91v50.842c0 3.866-3.134 7-7 7s-7-3.134-7-7V200.81c0-41.372-33.538-74.91-74.91-74.91H193.23c-.37 0-.732-.029-1.086-.084Z"
-					/>
-					<path
-						stroke="url(#b)"
-						d="M210.03 283.94c0-3.866-3.134-7-7-7s-7 3.134-7 7v3.113c0 26.959 21.854 48.814 48.813 48.814 26.351 0 47.825-20.879 48.781-46.996h24.614c3.866 0 7-3.134 7-7s-3.134-7-7-7h-26.841c-30.744 0-60.256-12.083-82.173-33.643-2.756-2.711-7.188-2.675-9.899.081-2.711 2.756-2.675 7.188.081 9.9 21.725 21.371 50.116 34.423 80.228 37.134-.679 18.629-15.995 33.524-34.791 33.524-19.227 0-34.813-15.587-34.813-34.814v-3.113Z"
-					/>
-					<path
-						stroke="url(#c)"
-						d="M238.03 202.145c0 4.792 3.885 8.677 8.677 8.677s8.676-3.885 8.676-8.677-3.884-8.676-8.676-8.676-8.677 3.884-8.677 8.676Z"
-					/>
 					<defs>
 						<radialGradient
-							id="a"
+							id="spot"
 							cx="0"
 							cy="0"
-							r={"1"}
+							r="1"
 							gradientUnits="userSpaceOnUse"
 							gradientTransform={gradientTransform}
 						>
-							<stop stopColor="hsl(var(--brand-default))" />
-							<stop offset="1" stopColor="hsl(var(--foreground-lighter))" />
-						</radialGradient>
-						<radialGradient
-							id="b"
-							cx="0"
-							cy="0"
-							r={"1"}
-							gradientUnits="userSpaceOnUse"
-							gradientTransform={gradientTransform}
-						>
-							<stop stopColor="hsl(var(--brand-default))" />
-							<stop offset="1" stopColor="hsl(var(--foreground-lighter))" />
-						</radialGradient>
-						<radialGradient
-							id="c"
-							cx="0"
-							cy="0"
-							r={"1"}
-							gradientUnits="userSpaceOnUse"
-							gradientTransform={gradientTransform}
-						>
-							<stop stopColor="hsl(var(--brand-default))" />
-							<stop offset="1" stopColor="hsl(var(--foreground-lighter))" />
+							<stop stopColor="#ff3ea5" />
+							<stop offset="1" stopColor="#ffc0cb" />
 						</radialGradient>
 					</defs>
+
+					{/* Outline trắng luôn hiện (nhẹ nhàng) */}
+					<g dangerouslySetInnerHTML={{ __html: whiteMarkup }} opacity={0.9} />
+
+					{/* Spotlight hồng bám theo chuột */}
+					<g dangerouslySetInnerHTML={{ __html: pinkMarkup }} />
 				</svg>
 			</span>
 		</figure>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Lightning in Circle - Slate Gray</title>
+  <desc>Simple lightning bolt inside a circle, stroke-only, slate-gray color.</desc>
+  <circle cx="128" cy="128" r="100" stroke="#64748B" stroke-width="16" />
+  <path d="M140 56 L96 136 H124 L112 200 L160 120 H132 L140 56" 
+        stroke="#64748B" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
