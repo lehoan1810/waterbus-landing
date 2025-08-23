@@ -62,7 +62,7 @@ const MobileNavbar = (_props: IMobileNavbarProps) => {
 											) : (
 												<Link
 													className="py-4 text-base font-medium block"
-													href={link.href}
+													href={link.href || ""}
 												>
 													{link.title}
 												</Link>
