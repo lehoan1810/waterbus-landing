@@ -21,7 +21,7 @@ const CardBlazinglyFast = (_props: ICard1Props) => {
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
-			{/* {isHovered && <BorderBeam duration={10} size={200} />} */}
+			{isHovered && <BorderBeam duration={10} size={200} />}
 			<div className=" flex items-start flex-col gap-4 top-0 left-0 px-8 pb-4 pt-8">
 				<div className="flex items-center gap-2">
 					{icon}
