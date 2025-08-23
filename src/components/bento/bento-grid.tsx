@@ -5,11 +5,16 @@ import CardDistributed from "@/components/bento/card-distributed";
 import CardEgress from "@/components/bento/card-egress";
 import CardHybridTopology from "@/components/bento/card-hybrid-topology";
 import CardVirtualBackground from "@/components/bento/card-virtual-background";
+import { BorderBeam } from "@/components/layout/banner/border-beam";
 import {
 	Activity,
+	Cable,
+	ImagePlus,
 	PictureInPicture,
 	ScatterChart,
 	Share,
+	ShipWheel,
+	SquareArrowOutUpRight,
 	Upload,
 	Zap,
 } from "lucide-react";
@@ -36,7 +41,7 @@ const listContentCard = [
 			<CardHybridTopology
 				title="Hybrid Topology"
 				description="Supports both SFU and P2P architectures. Optimize media routing dynamically based on the user's network conditions and geography."
-				icon={<Share />}
+				icon={<Cable />}
 			/>
 		),
 	},
@@ -56,7 +61,7 @@ const listContentCard = [
 			<CardEgress
 				title="Egress"
 				description="Stream your sessions to HLS. Plug in custom pipelines for archiving, compliance, or broadcasting."
-				icon={<Upload />}
+				icon={<SquareArrowOutUpRight />}
 			/>
 		),
 	},
@@ -66,7 +71,7 @@ const listContentCard = [
 			<CardVirtualBackground
 				title="Virtual Background"
 				description="AI-powered background blur and replacement, running client-side or via custom compute egress nodes."
-				icon={<PictureInPicture />}
+				icon={<ImagePlus />}
 			/>
 		),
 	},
@@ -76,7 +81,7 @@ const listContentCard = [
 			<CardDistributed
 				title="Distributed"
 				description="Horizontally scalable architecture with Redis-backed signaling and media coordination across multiple nodes."
-				icon={<ScatterChart />}
+				icon={<ShipWheel />}
 			/>
 		),
 	},

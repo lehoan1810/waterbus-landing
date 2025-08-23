@@ -11,14 +11,13 @@ import GitHubLight from "../../public/svg/github";
 export const NAV_LINKS = [
 	{
 		title: "Developers",
-		href: "/developers",
 		menu: [
 			{
 				title: "Developers",
 				subMenu: [
 					{
 						title: "Documentation",
-						href: "/features/link-shortening",
+						href: "https://docs.waterbus.tech/en/core",
 						icon: BookText,
 					},
 					{
@@ -28,7 +27,7 @@ export const NAV_LINKS = [
 					},
 					{
 						title: "Support",
-						href: "/features/link-shortening",
+						href: "mailto:lambiengcode@gmail.com",
 						icon: LifeBuoy,
 					},
 				],
@@ -38,17 +37,17 @@ export const NAV_LINKS = [
 				subMenu: [
 					{
 						title: "Github",
-						href: "/",
+						href: "https://github.com/waterbustech/waterbus-rs",
 						icon: GitHubLight,
 					},
 					{
 						title: "Discussions",
-						href: "/",
+						href: "https://github.com/orgs/waterbustech/discussions",
 						icon: MessageSquareMore,
 					},
 					{
 						title: "Sponsor",
-						href: "/",
+						href: "#pricing",
 						icon: HeartHandshake,
 					},
 				],
@@ -61,7 +60,7 @@ export const NAV_LINKS = [
 	},
 	{
 		title: "Pricing",
-		href: "/pricing",
+		href: "#pricing",
 	},
 
 	{

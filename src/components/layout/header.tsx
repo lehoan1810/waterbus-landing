@@ -100,6 +100,7 @@ const Navbar = () => {
 										<div>
 											<NavigationMenuLink
 												className={navigationMenuTriggerStyle()}
+												href={link.href}
 											>
 												{link.title}
 											</NavigationMenuLink>

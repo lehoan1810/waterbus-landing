@@ -1,6 +1,7 @@
 "use client";
 import ButtonCustomV2 from "@/components/button/button-custom";
 import { MeteorsBackground } from "@/components/layout/banner/banner-grid";
+import { ButtonTextAnimation } from "@/components/layout/banner/button-text-animation";
 import AnimationContainer from "@/components/ui/animation-container";
 import { Button } from "@/components/ui/button";
 import ButtonCustom from "@/components/ui/button-custom";
@@ -13,15 +14,11 @@ interface IBannerLynxProps {
 }
 
 const BannerHome = (_props: IBannerLynxProps) => {
-	const handleScroll = () => {
-		const target = document.getElementById("pricing");
-		target?.scrollIntoView({ behavior: "smooth" });
-	};
 	return (
 		<div className="relative text_custom_selection">
 			<div className="mx-auto w-full max-w-5xl px-6 h-full lg:px-16 pt-20">
 				<div className="flex items-center justify-center flex-col lg:gap-8 gap-4">
-					<button
+					{/* <button
 						type="button"
 						onClick={handleScroll}
 						className="group relative grid overflow-hidden rounded-full px-4 py-1 shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] transition-colors duration-200 cursor-pointer"
@@ -36,7 +33,8 @@ const BannerHome = (_props: IBannerLynxProps) => {
 							Introducing Waterbus
 							<ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
 						</span>
-					</button>
+					</button> */}
+					<ButtonTextAnimation />
 					<h1 className=" relative mx-0  pt-5 md:mx-auto md:px-0 px-4 md:py-2 text-balance text-center text-4xl sm:text-5xl sm:leading-none lg:text-7xl">
 						<p className="text-center">Go live instantly</p>
 						<p className="text-primary text-center">Scale without limits</p>
