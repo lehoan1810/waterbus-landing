@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { BorderBeam } from "@/components/layout/banner/border-beam";
 import { NotebookIcon, Sparkles } from "lucide-react";
-import DisplayCards from "@/components/bento/card-virtual-background/display-card";
+import DisplayCards from "@/components/bento/card-adaptive-stream/display-card";
 
 interface ICard1Props {
 	title?: string;
