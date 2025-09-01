@@ -40,7 +40,7 @@ const listContentCard = [
 		children: (
 			<CardHybridTopology
 				title="Hybrid Topology"
-				description="Supports both SFU and P2P architectures. Optimize media routing dynamically based on the user's network conditions and geography."
+				description="Supports SFU and P2P, dynamically optimizing media routing by network and location."
 				icon={<Cable />}
 			/>
 		),

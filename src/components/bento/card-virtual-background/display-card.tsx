@@ -20,7 +20,7 @@ function DisplayCard({
 	description = "Discover amazing content",
 	date = "Just now",
 	iconClassName = "text-blue-500",
-	titleClassName = "text-blue-500",
+	titleClassName = "",
 }: DisplayCardProps) {
 	return (
 		<div
@@ -29,8 +29,8 @@ function DisplayCard({
 				className
 			)}
 		>
-			<div>
-				<p className={cn("text-lg font-medium", titleClassName)}>{title}</p>
+			<div className="group">
+				<p className={cn("text-lg font-medium ", titleClassName)}>{title}</p>
 			</div>
 		</div>
 	);
