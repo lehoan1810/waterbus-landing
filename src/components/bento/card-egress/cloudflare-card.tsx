@@ -1,20 +1,15 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { User } from "lucide-react";
 import Image from "next/image";
 
 interface DatabaseWithRestApiProps {
 	className?: string;
-	badgeTexts?: { first: string; second: string; third: string; fourth: string };
-	buttonTexts?: { first: string; second: string };
 	lightColor?: string; // màu ánh sáng xanh
 }
 
 const DatabaseWithRestApi = ({
 	className,
-	badgeTexts,
-	buttonTexts,
 	lightColor,
 }: DatabaseWithRestApiProps) => {
 	const glowColor = lightColor || "#00A6F5";

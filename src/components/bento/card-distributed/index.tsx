@@ -1,8 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { BorderBeam } from "@/components/layout/banner/border-beam";
-import { WorldMap } from "@/components/bento/card-distributed/world-map";
+import dynamic from "next/dynamic";
+
+const BorderBeam = dynamic(
+	() =>
+		import("@/components/layout/banner/border-beam").then((m) => m.BorderBeam),
+	{
+		ssr: false,
+	}
+);
+const GlobeV2 = dynamic(
+	() => import("@/components/ui/globe-v2").then((m) => m.Globe),
+	{
+		ssr: false,
+	}
+);
 
 interface ICard1Props {
 	title?: string;
@@ -21,48 +34,17 @@ const CardDistributed = (_props: ICard1Props) => {
 			onMouseLeave={() => setIsHovered(false)}
 		>
 			{isHovered && <BorderBeam duration={12} size={250} />}
-			<div className=" flex items-start flex-col gap-4 top-0 left-0 px-8 pb-4 pt-8">
-				<div className="flex items-center gap-2">
-					{icon}
-					<p className="text-base font-medium text-white">{title}</p>
+			<div className="flex  justify-between h-full">
+				<div className=" flex items-start flex-col gap-4 top-0 left-0 px-8 pb-4 pt-8">
+					<div className="flex items-center gap-2">
+						{icon}
+						<p className="text-base font-medium text-white">{title}</p>
+					</div>
+					<p className="text-sm font-medium text-neutral-500">{description}</p>
 				</div>
-				<p className="text-sm font-medium text-neutral-500">{description}</p>
-			</div>
-			<div className="hidden md:flex px-8 h-full bg-neutral-900">
-				<WorldMap
-					dots={[
-						{
-							start: {
-								lat: 64.2008,
-								lng: -149.4937,
-							}, // Alaska (Fairbanks)
-							end: {
-								lat: 34.0522,
-								lng: -118.2437,
-							}, // Los Angeles
-						},
-						{
-							start: { lat: 64.2008, lng: -149.4937 }, // Alaska (Fairbanks)
-							end: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
-						},
-						{
-							start: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
-							end: { lat: 38.7223, lng: -9.1393 }, // Lisbon
-						},
-						{
-							start: { lat: 51.5074, lng: -0.1278 }, // London
-							end: { lat: 28.6139, lng: 77.209 }, // New Delhi
-						},
-						{
-							start: { lat: 28.6139, lng: 77.209 }, // New Delhi
-							end: { lat: 43.1332, lng: 131.9113 }, // Vladivostok
-						},
-						{
-							start: { lat: 28.6139, lng: 77.209 }, // New Delhi
-							end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
-						},
-					]}
-				/>
+				<div className="hidden md:flex  h-full bg-neutral-900">
+					<GlobeV2 />
+				</div>
 			</div>
 		</div>
 	);
