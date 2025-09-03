@@ -13,7 +13,7 @@ const DatabaseWithRestApi = ({
 	lightColor,
 	centerLabel = "SFU",
 }: SfuTopologyProps) => {
-	const glowColor = lightColor || "#00A6F5";
+	const glowColor = lightColor || "#F4811F";
 
 	// Khung vẽ & box SFU
 	const vb = { w: 260, h: 140 };
@@ -193,7 +193,7 @@ const UserIcon = ({ x = "0", y = "0" }: { x: string; y: string }) => (
 		height="20"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="#3B82F6"
+		stroke="#F4811F"
 		strokeWidth="1"
 		strokeLinecap="round"
 		strokeLinejoin="round"

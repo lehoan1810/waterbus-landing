@@ -11,9 +11,9 @@ interface P2PTopologyProps {
 const P2PTopology = ({
 	className,
 	lightColor,
-	userColor = "#3B82F6",
+	userColor = "#3ECF8E",
 }: P2PTopologyProps) => {
-	const glowColor = lightColor || "#00A6F5";
+	const glowColor = lightColor || "#3ECF8E";
 
 	const vb = { w: 200, h: 50 };
 	const midY = vb.h / 2;

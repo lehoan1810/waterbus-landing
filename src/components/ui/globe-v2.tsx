@@ -40,9 +40,37 @@ const GLOBE_CONFIG: COBEOptions = {
 	],
 };
 
+const DARKER_INVERTED_CONFIG: COBEOptions = {
+	width: 400,
+	height: 400,
+	onRender: () => {},
+	devicePixelRatio: 2,
+	phi: 0,
+	theta: 0.3,
+	dark: 1,
+	diffuse: 1, // thêm độ tán xạ để viền mềm hơn
+	mapSamples: 16000,
+	mapBrightness: 8, // ↑ làm map dots sáng (gần như trắng)
+	baseColor: [0.06, 0.07, 0.1], // ↓ thân cầu tối (xám rất đậm)
+	glowColor: [0.85, 0.9, 1], // viền sáng nhẹ
+	markerColor: [251 / 255, 100 / 255, 21 / 255], // giữ màu cam markers
+	markers: [
+		{ location: [14.5995, 120.9842], size: 0.03 },
+		{ location: [19.076, 72.8777], size: 0.1 },
+		{ location: [23.8103, 90.4125], size: 0.05 },
+		{ location: [30.0444, 31.2357], size: 0.07 },
+		{ location: [39.9042, 116.4074], size: 0.08 },
+		{ location: [-23.5505, -46.6333], size: 0.1 },
+		{ location: [19.4326, -99.1332], size: 0.1 },
+		{ location: [40.7128, -74.006], size: 0.1 },
+		{ location: [34.6937, 135.5022], size: 0.05 },
+		{ location: [41.0082, 28.9784], size: 0.06 },
+	],
+};
+
 export function Globe({
 	className,
-	config = GLOBE_CONFIG,
+	config = DARKER_INVERTED_CONFIG,
 }: {
 	className?: string;
 	config?: COBEOptions;
