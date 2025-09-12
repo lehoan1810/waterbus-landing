@@ -67,7 +67,7 @@ export default function RootLayout({
 	return (
 		<html suppressHydrationWarning className="dark" lang="en">
 			<body
-				className={`${customFont.className} ${GeistMono.variable} antialiased font-san`}
+				className={`${customFont.className} ${GeistMono.variable} antialiased font-sans`}
 			>
 				<Header />
 				{children}

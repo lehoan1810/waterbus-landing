@@ -4,6 +4,19 @@ const nextConfig: NextConfig = {
 	experimental: {
 		optimizePackageImports: ["lucide-react", "framer-motion"],
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "**",
+			},
+			{
+				protocol: "http",
+				hostname: "**",
+			},
+		],
+		formats: ["image/webp"],
+	},
 	async headers() {
 		return [
 			{
