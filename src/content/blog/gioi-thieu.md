@@ -1,10 +1,11 @@
 ---
-title: Giới thiệu Flutter — Viết app đa nền tảng từ một codebase
+title: Giới thiệu Flutter — Viết app đa nền tảng từ một codebase (phần 2)
 date: 2025-09-12
-tags: [flutter, dart, mobile, desktop, cross-platform]
 summary: Flutter là bộ công cụ UI của Google cho phép xây dựng ứng dụng iOS, Android, Web và Desktop từ cùng một codebase bằng ngôn ngữ Dart.
 published: true
 cover: https://i.pinimg.com/236x/fe/c2/0d/fec20d2958059b8463bffb138d4eaac6.jpg
+author: Lambiengcode
+authorAvatar: https://avatars.githubusercontent.com/u/60530946
 ---
 
 <p>

@@ -6,6 +6,7 @@ import VideoHome from "@/components/layout/banner/video-home";
 import SectionMain from "@/components/layout/main/section-main";
 import SectionPricing from "@/components/layout/main/section-pricing";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
 			url: "https://media.waterbus.tech/waterbus-demo.mp4",
 		},
 	];
+
 	return (
 		<main className="space-y-10 sm:space-y-20">
 			<BannerHome />
@@ -95,20 +97,24 @@ export default function Home() {
 						>
 							Try a demo
 						</Link> */}
-						<ButtonCustomV2
-							variant="primary"
-							size="md"
-							label="START BUILDING"
-							icon="github"
-							className="disabled:opacity-40 w-fit disabled:cursor-default"
-						/>
-						<ButtonCustomV2
-							variant="link"
-							size="md"
-							label="TRY DEMO"
-							icon="github"
-							className="disabled:opacity-40 w-fit disabled:cursor-default"
-						/>
+						<Link target="_blank" href="https://docs.waterbus.tech/">
+							<ButtonCustomV2
+								variant="primary"
+								size="md"
+								label="START BUILDING"
+								icon="github"
+								className="disabled:opacity-40 w-fit disabled:cursor-default"
+							/>
+						</Link>
+						<Link target="_blank" href="https://meet.waterbus.tech">
+							<ButtonCustomV2
+								variant="link"
+								size="md"
+								label="TRY DEMO"
+								icon="github"
+								className="disabled:opacity-40 w-fit disabled:cursor-default"
+							/>
+						</Link>
 					</div>
 				</div>
 			</div>

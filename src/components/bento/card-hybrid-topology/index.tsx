@@ -1,11 +1,8 @@
 "use client";
 
-import { AnimatedBeamDemo } from "@/components/bento/card-hybrid-topology/AnimatedBeamDemo";
 import P2PTopology from "@/components/bento/card-hybrid-topology/Beam-b2b";
-import BeamB2B from "@/components/bento/card-hybrid-topology/Beam-b2b";
 import DatabaseWithRestApi from "@/components/bento/card-hybrid-topology/DatabaseWithRestApi";
 import { BorderBeam } from "@/components/layout/banner/border-beam";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 interface ICard1Props {
@@ -32,11 +29,11 @@ const CardHybridTopology = (_props: ICard1Props) => {
 				</div>
 				<p className="text-sm font-medium text-neutral-500">{description}</p>
 			</div>
-			<div className="hidden md:flex flex-col gap-2 w-full h-full items-start justify-center">
-				<div className="block duration-300 group-hover:hidden">
+			<div className="hidden md:flex relative w-full h-full items-start justify-center">
+				<div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-out will-change-[opacity] opacity-100 group-hover:opacity-0 pointer-events-none">
 					<P2PTopology />
 				</div>
-				<div className="hidden duration-300 group-hover:block">
+				<div className="absolute inset-0 transition-opacity duration-300 ease-out will-change-[opacity] opacity-0 group-hover:opacity-100 pointer-events-none">
 					<DatabaseWithRestApi />
 				</div>
 			</div>

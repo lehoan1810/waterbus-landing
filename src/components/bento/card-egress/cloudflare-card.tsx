@@ -122,13 +122,13 @@ const DatabaseWithRestApi = ({
 			</svg>
 
 			{/* ===== BOX Ở TRÊN ===== */}
-			<div className="absolute  z-30 flex items-center justify-center px-20  border-amber-500  rounded-full  font-semibold text-xs">
+			<div className="absolute  z-30 flex items-center justify-center px-20  border-amber-500  rounded-full  font-semibold text-xs top-10">
 				<Image
 					src="/svg/cloudflare.svg"
 					alt="cloudflare"
-					width={100}
-					height={100}
-					className="size-[120px] object-contain"
+					width={80}
+					height={80}
+					className="size-[80px] object-contain"
 				/>
 			</div>
 		</div>

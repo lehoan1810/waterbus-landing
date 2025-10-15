@@ -31,11 +31,7 @@ export const FOOTER_NAV = [
 			},
 			{
 				label: "Github",
-				href: "https://github.com/waterbustech/waterbus",
-			},
-			{
-				label: "License",
-				href: "https://www.apache.org/licenses/LICENSE-2.0",
+				href: "https://github.com/waterbustech",
 			},
 		],
 	},

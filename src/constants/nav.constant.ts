@@ -37,7 +37,7 @@ export const NAV_LINKS = [
 				subMenu: [
 					{
 						title: "Github",
-						href: "https://github.com/waterbustech/waterbus-rs",
+						href: "https://github.com/waterbustech",
 						icon: GitHubLight,
 					},
 					{

@@ -22,6 +22,9 @@ export type PostMeta = {
 	summary?: string;
 	cover?: string;
 	published?: boolean;
+	authorName?: string;
+	authorAvatar?: string;
+	readingMinutes?: number;
 };
 
 export type Post = PostMeta & {
@@ -40,9 +43,16 @@ export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
 	for (const filename of files) {
 		const full = path.join(BLOG_DIR, filename);
 		const raw = await fs.readFile(full, "utf8");
-		const { data } = matter(raw);
+		const { data, content } = matter(raw);
 
 		const slug = filename.replace(/\.(md|mdx)$/i, "");
+		const words = content
+			.replace(/<[^>]*>/g, " ")
+			.replace(/[`*_>#-]/g, " ")
+			.split(/\s+/)
+			.filter(Boolean).length;
+		const readingMinutes = Math.max(1, Math.round(words / 200));
+
 		const meta: PostMeta = {
 			slug,
 			title: data.title ?? slug,
@@ -51,6 +61,13 @@ export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
 			summary: data.summary ?? "",
 			cover: data.cover ?? undefined,
 			published: data.published !== false, // mặc định true
+			authorName:
+				data.author?.name ??
+				data.author ??
+				(Array.isArray(data.authors) ? data.authors.join(", ") : undefined),
+			authorAvatar:
+				data.author?.avatar ?? data.avatar ?? data.authorAvatar ?? undefined,
+			readingMinutes,
 		};
 		posts.push(meta);
 	}

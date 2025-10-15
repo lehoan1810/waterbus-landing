@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import ButtonCustomV2 from "@/components/button/button-custom";
-import { Button } from "@/components/ui/button";
-import ButtonCustom from "@/components/ui/button-custom";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const username = "waterbustech";
 const repo = "waterbus";
@@ -12,6 +11,7 @@ const repo = "waterbus";
 const ButtonGithubStar = () => {
 	const [stars, setStars] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
+	const router = useRouter();
 
 	useEffect(() => {
 		fetch(`https://api.github.com/repos/${username}/${repo}`)
@@ -50,13 +50,18 @@ const ButtonGithubStar = () => {
 			)}
 
 			<div className=" flex items-center justify-start gap-4">
-				<ButtonCustomV2
-					variant="primary"
-					size="md"
-					label="START BUILDING"
-					icon="github"
-					className="disabled:opacity-40 w-full disabled:cursor-default"
-				/>
+				<a href="https://docs.waterbus.tech/" target="_blank">
+					<ButtonCustomV2
+						variant="primary"
+						size="md"
+						label="START BUILDING"
+						icon="github"
+						className="disabled:opacity-40 w-full disabled:cursor-default"
+						onClick={() => {
+							router.push("https://docs.waterbus.tech/");
+						}}
+					/>
+				</a>
 			</div>
 		</div>
 	);
