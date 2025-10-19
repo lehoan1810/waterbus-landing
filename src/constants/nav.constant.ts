@@ -67,8 +67,8 @@ export const NAV_LINKS = [
 		title: "Docs",
 		href: "https://docs.waterbus.tech/",
 	},
-	// {
-	// 	title: "Blog",
-	// 	href: "https://blog.waterbus.tech/",
-	// },
+	{
+		title: "Blog",
+		href: "/blog",
+	},
 ];
